@@ -14,7 +14,9 @@ class Post extends Model
     protected $fillable = [
         'title',
         'body',
-        'category_id'
+        'category_id',
+        'user_id',
+        'image_url'
         ];
     
     public function getPaginateByLimit(int $limit_count = 5)
@@ -28,5 +30,10 @@ class Post extends Model
         // Categoryに対するリレーション
         //「1対多」の関係なので単数系に
         return $this->belongsTo(Category::class);
+    }
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use App\Models\Category;
+use Cloudinary;
 
 class PostController extends Controller
 {
@@ -18,7 +19,6 @@ class PostController extends Controller
     public function index(Post $post)
     {
         return view('posts/index')->with(['posts' => $post->getPaginateByLimit(5)]);
-        // blade内で使う変数'posts'と設定。'posts'の中身にgetを使い、インスタンス化した$postを代入
     }
     
     /*
@@ -41,18 +41,31 @@ class PostController extends Controller
     public function store(PostRequest $request, Post $post)
     {
         $input = $request['post'];
+        //cloudinaryへ画像を送信し、画像のURLを$image_urlに代入している
+        $image_url = $request->file('image');
+        if (isset($image_url)) {
+            $input += ['image_url' => $image_url = Cloudinary::upload($image_url->getRealPath())->getSecurePath()];
+        }
+        $input += ['user_id' => $request->user()->id];
         $post->fill($input)->save();
         return redirect('/posts/' . $post->id);
     }
     
     public function edit(Post $post)
     {
-        return view('posts/edit')->with(['post' => $post]);
+        
+        return view('posts/edit')->with(['posts' => $post]);
     }
     
     public function update(PostRequest $request, Post $post)
     {
         $input_post = $request['post'];
+        //cloudinaryへ画像を送信し、画像のURLを$image_urlに代入している
+        $image_url = $request->file('image');
+        if (isset($image_url)) {
+            $input_post += ['image_url' => $image_url = Cloudinary::upload($image_url->getRealPath())->getSecurePath()];
+        }
+        $input_post += ['user_id' => $request->user()->id];
         $post->fill($input_post)->save();
         return redirect('/posts/' . $post->id);
     }
