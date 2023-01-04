@@ -19,8 +19,12 @@
                     </x-nav-link>
                     <x-nav-link :href="route('index')" :active="request()->routeIs('index')">
                         {{ __('Index') }}
-                    </x-nav-link><x-nav-link :href="route('create')" :active="request()->routeIs('create')">
+                    </x-nav-link>
+                    <x-nav-link :href="route('create')" :active="request()->routeIs('create')">
                         {{ __('Create') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('contact')" :active="request()->routeIs('contact')">
+                        {{ __('Contact') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -55,6 +59,12 @@
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
                         </form>
+                        
+                        @if (Auth::user()->id == 1)
+                            <x-dropdown-link :href="route('contact.show')">
+                                {{ __('contact_show') }}
+                            </x-dropdown-link>
+                        @endif
                     </x-slot>
                 </x-dropdown>
             </div>

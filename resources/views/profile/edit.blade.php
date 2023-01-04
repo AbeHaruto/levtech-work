@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
     
-    <h1 class="text-4xl text-green-700 text-center font-semibold">Hello</h1>
+    
     
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">

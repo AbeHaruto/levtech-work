@@ -4,7 +4,6 @@
             {{ __('投稿一覧') }}
         </h2>
     </x-slot>
-    <h2 class="text-2xl">{{ Auth::user()->name }}</h2>
     
     <!-- ====== Blog Section Start -->
     <section class="pt-20 pb-10 lg:pt-[120px] lg:pb-20">
@@ -28,37 +27,47 @@
             <div class="-mx-4 flex flex-wrap">
                 @foreach ($posts as $post)
                 <div class="w-full px-4 md:w-1/2 lg:w-1/3">
-                    <div class="mx-auto mb-10 max-w-[370px]">
-                        
-                            <div class='post'>
-                                <div class="mb-8 overflow-hidden rounded">
+                    <div class="mx-auto mb-10 max-w-[370px] max-h-[168px]">
+                        <div class='post'>
+                            <a class="mb-8 overflow-hidden rounded" href="/posts/{{ $post->id}}">
+                                @if (isset($post->image_url))
                                     <img
                                         src="{{ $post->image_url }}"
                                         alt="image"
-                                        class="w-[300px] h-[168px]"
+                                        class=""
                                     />
-                                </div>
-                                <div>
-                                    <span
-                                        class="bg-primary mb-5 inline-block rounded py-1 px-4 text-center text-xs font-semibold leading-loose text-green"
+                                @endif
+                            </a>
+                            <div>
+                                <p>
+                                    <a
+                                        href="/categories/{{ $post->category->id }}"
+                                        class="relative inline-block w-24 ml-3 mt-2 px-6 py-3 overflow-hidden text-base font-semibold text-center text-white rounded-lg bg-indigo-500 hover:bg-indigo-400"
                                     >
-                                        {{ $post->updated_at }}
-                                    </span>
-                                    <h3>
-                                        <a
-                                            href="/posts/{{ $post->id}}"
-                                            class="text-dark hover:text-primary mb-4 inline-block text-xl font-semibold sm:text-2xl lg:text-xl xl:text-2xl"
-                                        >
-                                            {{ $post->title }}
-                                        </a>
-                                    </h3>
-                                    <p class="text-body-color text-base">
-                                        {{ $post->body }}
-                                    </p>
-                                </div>
+                                        {{ $post->category->name }}
+                                    </a>
+                                    <a
+                                        href="/user/{{ $post->user->id }}"
+                                        class="relative inline-block w-40 ml-3 mt-2 px-6 py-3 overflow-hidden text-base font-semibold text-center text-white rounded-lg bg-indigo-500 hover:bg-indigo-400"
+                                    >
+                                        {{ $post->user->name }}
+                                    </a>
+                                    
+                                </p>
+                                
+                                <h3>
+                                    <a
+                                        href="/posts/{{ $post->id}}"
+                                        class="text-dark hover:text-primary mb-4 inline-block text-xl font-semibold sm:text-2xl lg:text-xl xl:text-2xl"
+                                    >
+                                        {{ $post->title }}
+                                    </a>
+                                </h3>
+                                <p class="text-body-color text-base">
+                                    {{ $post->body }}
+                                </p>
                             </div>
-                        
-                        
+                        </div>
                     </div>
                 </div>
                 @endforeach
@@ -69,7 +78,7 @@
 
     
     <div class='paginate'>
-        {{ $posts->links() }}
+        {{ $posts->links('vendor.pagination.custom') }}
     </div>
     <script>
         function deletePost(id) {

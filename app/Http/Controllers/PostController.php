@@ -18,7 +18,7 @@ class PostController extends Controller
      */
     public function index(Post $post)
     {
-        return view('posts/index')->with(['posts' => $post->getPaginateByLimit(5)]);
+        return view('posts/index')->with(['posts' => $post->getPaginateByLimit(15)]);
     }
     
     /*
@@ -54,7 +54,11 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         
-        return view('posts/edit')->with(['posts' => $post]);
+        $category = Category::get();
+        return view('posts/edit')->with([
+            'post' => $post,
+            'categories' => $category,
+        ]);
     }
     
     public function update(PostRequest $request, Post $post)
