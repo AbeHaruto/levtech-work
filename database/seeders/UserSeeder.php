@@ -26,9 +26,9 @@ class UserSeeder extends Seeder
         ]);
         
         DB::table('users')->insert([
-            'name' => 'HarutoSub',
+            'name' => 'guest',
             'email' => '208408@st.takushoku-u.ac.jp',
-            'password' => Hash::make('Haruto0326'),
+            'password' => Hash::make('Guest0000'),
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
         ]);

@@ -16,12 +16,16 @@
                 {{ $post->user->name }}
             </a>
 
-            <p class="text-gray-500 sm:text-lg mb-6 md:mb-8">
+            <p class="text-black sm:text-lg mb-6 md:mb-8">
                 {{ $post->body }}
             </p>
-            <div class="bg-gray-100 overflow-hidden rounded-lg shadow-lg relative mb-6 md:mb-8">
-                <img src="{{ $post->image_url }}" loading="lazy" alt="image" class="w-full h-full object-cover object-center" />
-            </div>
+            
+            @if (isset($post->image_url))
+                <div class="bg-gray-100 overflow-hidden rounded-lg shadow-lg relative mb-6 md:mb-8">
+                    <img src="{{ $post->image_url }}" loading="lazy" alt="image" class="w-full h-full object-cover object-center" />
+                </div>
+            @endif
+            
             @if ($post->user->id == Auth::user()->id)
                 <a href="/posts/{{ $post->id }}/edit" class="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 text-gray-600 whitespace-no-wrap bg-white border border-gray-200 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:shadow-none ml-2 mb-2">
                     edit
