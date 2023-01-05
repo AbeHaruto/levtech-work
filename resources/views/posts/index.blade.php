@@ -27,14 +27,14 @@
             <div class="-mx-4 flex flex-wrap">
                 @foreach ($posts as $post)
                 <div class="w-full px-4 md:w-1/2 lg:w-1/3">
-                    <div class="mx-auto mb-10 max-w-[370px] max-h-[168px]">
+                    <div class="mx-auto mb-10">
                         <div class='post'>
-                            <a class="mb-8 overflow-hidden rounded" href="/posts/{{ $post->id}}">
+                            <a class="mb-8 overflow-hidden rounded " href="/posts/{{ $post->id}}">
                                 @if (isset($post->image_url))
                                     <img
                                         src="{{ $post->image_url }}"
                                         alt="image"
-                                        class=""
+                                        class="mx-auto w-94 h-52"
                                     />
                                 @endif
                             </a>
@@ -42,13 +42,13 @@
                                 <p>
                                     <a
                                         href="/categories/{{ $post->category->id }}"
-                                        class="relative inline-block w-24 ml-3 mt-2 px-6 py-3 overflow-hidden text-base font-semibold text-center text-white rounded-lg bg-indigo-500 hover:bg-indigo-400"
+                                        class="relative inline-block w-24 mt-2 px-6 py-3 overflow-hidden text-base font-semibold text-center text-white rounded-lg bg-indigo-500 hover:bg-indigo-400"
                                     >
                                         {{ $post->category->name }}
                                     </a>
                                     <a
                                         href="/user/{{ $post->user->id }}"
-                                        class="relative inline-block w-40 ml-3 mt-2 px-6 py-3 overflow-hidden text-base font-semibold text-center text-white rounded-lg bg-indigo-500 hover:bg-indigo-400"
+                                        class="relative inline-block w-40 mt-2 px-6 py-3 overflow-hidden text-base font-semibold text-center text-white rounded-lg bg-indigo-500 hover:bg-indigo-400"
                                     >
                                         {{ $post->user->name }}
                                     </a>

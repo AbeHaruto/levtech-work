@@ -12,7 +12,7 @@
                 <div class="flex flex-col text-center w-full mb-12">
                     <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900"></h1>
                     <p class="lg:w-2/3 mx-auto leading-relaxed text-black">映画に関することならなんでも！</p>
-                    <p class="lg:w-2/3 mx-auto leading-relaxed text-black">Imageは消えちゃうから新しく追加してね！</p>
+                    <p class="lg:w-2/3 mx-auto leading-relaxed text-black">画像を変更する場合は「ファイルを選択」してね！</p>
                 </div>
                 <div class="lg:w-1/2 md:w-2/3 mx-auto">
                     <div class="flex flex-wrap -m-2">
